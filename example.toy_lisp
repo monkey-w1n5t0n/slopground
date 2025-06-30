@@ -1,0 +1,5 @@
+;; Example toy Lisp program
+
+(defvar x 10)
+(defvar y (+ x 5))
+(defvar z (* y 2))
