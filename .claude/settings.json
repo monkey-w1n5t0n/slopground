@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/user/slopground/.claude/hooks/stop_hook.py"
+          }
+        ]
+      }
+    ]
+  }
+}
