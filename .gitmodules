@@ -1,0 +1,3 @@
+[submodule "odoyle-rules"]
+	path = odoyle-rules
+	url = git@github.com:oakes/odoyle-rules.git
