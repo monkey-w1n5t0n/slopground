@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Script to run the generative art sketch
 
 cd "$(dirname "$0")"

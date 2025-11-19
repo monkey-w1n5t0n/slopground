@@ -1,3 +1,6 @@
 [submodule "odoyle-rules"]
 	path = odoyle-rules
 	url = git@github.com:oakes/odoyle-rules.git
+[submodule "generative_art/genartlib"]
+	path = generative_art/genartlib
+	url = git@github.com:thobbs/genartlib.git
