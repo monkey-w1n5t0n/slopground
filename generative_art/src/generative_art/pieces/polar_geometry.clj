@@ -1,7 +1,7 @@
 (ns generative-art.pieces.polar-geometry
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [genartlib.curves :refer [chaikin-curve]]))
+            [generative-art.util :refer [chaikin-curve]]))
 
 (def canvas-width 3000)
 (def canvas-height 3000)

@@ -1,8 +1,7 @@
 (ns generative-art.pieces.circle-packing
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [genartlib.poisson-disc :refer [poisson-disc-sample]])
-  (:import [java.util Random]))
+            [generative-art.util :refer [poisson-disc-sample]]))
 
 (def canvas-width 3000)
 (def canvas-height 3000)
@@ -16,7 +15,7 @@
   (q/background 245 242 235)
   (q/no-stroke)
   ;; Generate initial points using Poisson disc sampling
-  (let [points (poisson-disc-sample 40 12 0 canvas-width 0 canvas-height (Random. seed))
+  (let [points (poisson-disc-sample 40 12 0 canvas-width 0 canvas-height seed)
         circles (mapv (fn [[x y]] {:x x :y y :r min-radius :growing true}) points)]
     {:circles circles
      :step 0

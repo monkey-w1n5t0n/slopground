@@ -1,8 +1,7 @@
 (ns generative-art.pieces.triangular-mesh
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [genartlib.poisson-disc :refer [poisson-disc-sample]])
-  (:import [java.util Random]))
+            [generative-art.util :refer [poisson-disc-sample]]))
 
 (def canvas-width 3000)
 (def canvas-height 3000)
@@ -12,7 +11,7 @@
   (q/noise-seed seed)
   (q/frame-rate 1)
   ;; Generate points with Poisson disc sampling
-  (let [interior-points (poisson-disc-sample 120 12 200 (- canvas-width 200) 200 (- canvas-height 200) (Random. seed))
+  (let [interior-points (poisson-disc-sample 120 12 200 (- canvas-width 200) 200 (- canvas-height 200) seed)
         ;; Add border points for better triangulation
         border-points (concat
                        (for [x (range 0 canvas-width 150)] [x 0])
