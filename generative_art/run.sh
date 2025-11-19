@@ -1,19 +1,30 @@
 #!/usr/bin/env bash
-# Script to run the generative art sketch
+# Script to run a specific generative art piece
 
 cd "$(dirname "$0")"
-echo "Generating artwork... This may take a few minutes."
-echo "Canvas size: 3000x3000 pixels"
-echo "Particles: 8000"
+
+if [ $# -lt 2 ]; then
+    echo "Usage: ./run.sh <piece-name> <seed>"
+    echo ""
+    echo "Example: ./run.sh flow-field 12345"
+    echo ""
+    clojure -M:run
+    exit 1
+fi
+
+PIECE=$1
+SEED=$2
+
+echo "Generating $PIECE artwork with seed $SEED..."
 echo ""
 
-clojure -M:run
+clojure -M:run "$PIECE" "$SEED"
 
-if [ -f "output.jpg" ]; then
+if [ -f "output/${PIECE}_seed_${SEED}.jpg" ]; then
     echo ""
-    echo "Success! Artwork saved to: $(pwd)/output.jpg"
-    ls -lh output.jpg
+    echo "Success! Artwork saved to: $(pwd)/output/${PIECE}_seed_${SEED}.jpg"
+    ls -lh "output/${PIECE}_seed_${SEED}.jpg"
 else
-    echo "Error: output.jpg was not created"
+    echo "Error: Artwork file was not created"
     exit 1
 fi

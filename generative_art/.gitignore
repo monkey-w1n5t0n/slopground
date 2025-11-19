@@ -1,4 +1,5 @@
 # Output files
+output/
 *.jpg
 *.jpeg
 *.png
