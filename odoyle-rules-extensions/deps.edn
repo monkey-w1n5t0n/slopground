@@ -1,0 +1,7 @@
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}}
+         :main-opts ["-m" "clojure.test"]}
+  :odoyle {:extra-deps {odoyle-rules {:local/root "../odoyle-rules"}}}}}
