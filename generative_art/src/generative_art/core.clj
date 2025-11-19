@@ -62,7 +62,7 @@
     (if (>= new-step (* max-steps 1.5))
       ;; Save and exit after all particles have had time to complete
       (do
-        (q/save (str (System/getProperty "user.dir") "/generative_art/output.jpg"))
+        (q/save "output.jpg")
         (println "Artwork saved to output.jpg")
         (q/exit)
         state)
