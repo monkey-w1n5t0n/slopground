@@ -1,0 +1,13 @@
+# Output files
+*.jpg
+*.jpeg
+*.png
+
+# Clojure
+.cpcache/
+.nrepl-port
+.rebel_readline_history
+
+# OS files
+.DS_Store
+Thumbs.db
