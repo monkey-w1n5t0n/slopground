@@ -59,7 +59,7 @@
      :b (max 0 (min 1 new-b))}))
 
 (defn update-state [state]
-  (if (>= (:step state) iterations)
+  (if (>= (:step state 0) iterations)
     (do
       (q/save (str "output/reaction_diffusion_seed_" (:seed state) ".jpg"))
       (println (str "Reaction-diffusion artwork saved to output/reaction_diffusion_seed_" (:seed state) ".jpg"))
@@ -70,7 +70,7 @@
                                  (update-cell (:grid state) x y)))))]
       (assoc state
              :grid new-grid
-             :step (inc (:step state))))))
+             :step (inc (:step state 0))))))
 
 (defn draw-state [state]
   (q/background 0)

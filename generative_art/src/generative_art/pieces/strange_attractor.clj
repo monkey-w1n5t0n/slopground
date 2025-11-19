@@ -33,7 +33,7 @@
     [new-x new-y new-z]))
 
 (defn update-state [state]
-  (if (>= (:step state) num-iterations)
+  (if (>= (:step state 0) num-iterations)
     (do
       (q/save (str "output/strange_attractor_seed_" (:seed state) ".jpg"))
       (println (str "Strange attractor artwork saved to output/strange_attractor_seed_" (:seed state) ".jpg"))
@@ -44,10 +44,10 @@
              :x new-x
              :y new-y
              :z new-z
-             :step (inc (:step state))))))
+             :step (inc (:step state 0))))))
 
 (defn draw-state [state]
-  (when (> (:step state) 100) ;; Skip initial transient
+  (when (> (:step state 0) 100) ;; Skip initial transient
     (q/color-mode :hsb 360 100 100 100)
     (let [scale 50
           x (+ (/ canvas-width 2) (* (:x state) scale))

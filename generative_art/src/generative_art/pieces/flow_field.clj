@@ -58,7 +58,7 @@
               (:x particle) (:y particle)))))
 
 (defn update-state [state]
-  (let [new-step (inc (:step state))]
+  (let [new-step (inc (:step state 0))]
     (if (>= new-step (* max-steps 1.5))
       (do
         (q/save (str "output/flow_field_seed_" (:seed state) ".jpg"))

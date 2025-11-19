@@ -38,7 +38,7 @@
        (not-any? #(and (not= circle %) (circles-overlap? circle %)) circles)))
 
 (defn update-state [state]
-  (if (> (:step state) 800)
+  (if (> (:step state 0) 800)
     (do
       (q/save (str "output/circle_packing_seed_" (:seed state) ".jpg"))
       (println (str "Circle packing artwork saved to output/circle_packing_seed_" (:seed state) ".jpg"))
@@ -51,7 +51,7 @@
                                  (:circles state))]
       (assoc state
              :circles updated-circles
-             :step (inc (:step state))))))
+             :step (inc (:step state 0))))))
 
 (defn draw-state [state]
   (q/color-mode :hsb 360 100 100)
