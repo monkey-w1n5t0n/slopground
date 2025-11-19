@@ -1,0 +1,27 @@
+{
+  "name": "webcam-hand-tracker",
+  "version": "1.0.0",
+  "description": "Real-time hand tracking using MediaPipe for gesture-based code control",
+  "main": "src/handTracker.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx http-server -p 8080 -o",
+    "dev": "npx http-server -p 8080"
+  },
+  "keywords": [
+    "mediapipe",
+    "hand-tracking",
+    "gesture-control",
+    "computer-vision"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mediapipe/hands": "^0.4.1646424915",
+    "@mediapipe/camera_utils": "^0.3.1640029074",
+    "@mediapipe/drawing_utils": "^0.3.1620248257"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

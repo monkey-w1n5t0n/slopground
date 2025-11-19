@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webcam Hand Tracker - MediaPipe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Webcam Hand Tracker</h1>
+      <p class="subtitle">Real-time hand tracking using MediaPipe for gesture-based control</p>
+    </header>
+
+    <main>
+      <div class="video-container">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas"></canvas>
+
+        <div id="status-overlay" class="status-overlay">
+          <div class="status-item">
+            <span class="status-label">Tracking:</span>
+            <span id="tracking-status" class="status-value">Initializing...</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Calibrated:</span>
+            <span id="calibration-status" class="status-value">No</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Hand Detected:</span>
+            <span id="hand-status" class="status-value">No</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Current Gesture:</span>
+            <span id="gesture-status" class="status-value">None</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="start-btn" class="btn btn-primary">Start Tracking</button>
+        <button id="stop-btn" class="btn btn-secondary" disabled>Stop Tracking</button>
+        <button id="calibrate-btn" class="btn btn-accent" disabled>Calibrate</button>
+      </div>
+
+      <div class="info-panel">
+        <h2>Hand Landmarks</h2>
+        <div id="landmarks-info" class="landmarks-grid">
+          <p>Start tracking to see hand landmarks...</p>
+        </div>
+      </div>
+
+      <div class="gesture-panel">
+        <h2>Detected Gestures</h2>
+        <div id="gesture-log" class="gesture-log">
+          <p>No gestures detected yet</p>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h2>Instructions</h2>
+        <ol>
+          <li>Click "Start Tracking" to begin hand detection</li>
+          <li>Allow camera access when prompted</li>
+          <li>Click "Calibrate" to set up your workspace boundaries</li>
+          <li>Follow the on-screen calibration instructions</li>
+          <li>Use hand gestures to control your application</li>
+        </ol>
+
+        <h3>Supported Gestures</h3>
+        <ul class="gesture-list">
+          <li><strong>Open Hand:</strong> All fingers extended</li>
+          <li><strong>Fist:</strong> All fingers curled</li>
+          <li><strong>Point:</strong> Index finger extended</li>
+          <li><strong>Peace:</strong> Index and middle fingers extended</li>
+          <li><strong>Thumbs Up:</strong> Only thumb extended</li>
+        </ul>
+      </div>
+    </main>
+
+    <!-- Calibration UI Container -->
+    <div id="calibration-container"></div>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
