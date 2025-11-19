@@ -30,32 +30,22 @@
      :ready false}))
 
 (defn draw-lsystem [lstring]
-  (let [stack (atom [])]
-    (q/push-matrix)
-    (doseq [ch lstring]
-      (case ch
-        \F (do
-             ;; Draw forward
-             (let [noise-offset (* (q/noise (/ (q/frame-count) 100.0)) 3)]
-               (q/line 0 0 0 (- (+ segment-length noise-offset))))
-             (q/translate 0 (- segment-length)))
+  (doseq [ch lstring]
+    (case ch
+      \F (do
+           ;; Draw forward
+           (q/line 0 0 0 (- segment-length))
+           (q/translate 0 (- segment-length)))
 
-        \+ (q/rotate (q/radians (+ angle (* (q/noise (/ (q/frame-count) 50.0)) 5))))
+      \+ (q/rotate (q/radians angle))
 
-        \- (q/rotate (q/radians (- (+ angle (* (q/noise (/ (q/frame-count) 50.0)) 5)))))
+      \- (q/rotate (q/radians (- angle)))
 
-        \[ (do
-             (swap! stack conj {:x (q/screen-x 0 0)
-                               :y (q/screen-y 0 0)
-                               :angle (aget (q/current-graphics) "curMatrix" "m02")})
-             (q/push-matrix))
+      \[ (q/push-matrix)
 
-        \] (do
-             (q/pop-matrix)
-             (swap! stack pop))
+      \] (q/pop-matrix)
 
-        nil))
-    (q/pop-matrix)))
+      nil)))
 
 (defn update-state [state]
   (if (:ready state)
@@ -70,20 +60,16 @@
   (q/background 250 248 240)
   (q/color-mode :hsb 360 100 100 100)
 
+  (q/push-matrix)
   ;; Position at bottom center
   (q/translate (/ canvas-width 2) (* canvas-height 0.95))
 
-  ;; Draw multiple slightly offset versions for depth
-  (doseq [i (range 5)]
-    (q/push-matrix)
-    (let [offset (* i 15)
-          hue (q/map-range i 0 5 80 140)
-          alpha (q/map-range i 0 5 80 30)]
-      (q/translate offset 0)
-      (q/stroke hue 70 60 alpha)
-      (q/stroke-weight (- 4 (* i 0.5)))
-      (draw-lsystem (:lstring state)))
-    (q/pop-matrix)))
+  ;; Draw with color variation
+  (q/stroke 100 65 50)
+  (q/stroke-weight 2.5)
+  (draw-lsystem (:lstring state))
+
+  (q/pop-matrix))
 
 (defn run [seed]
   (q/sketch
